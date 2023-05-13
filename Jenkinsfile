@@ -15,7 +15,7 @@ pipeline {
             curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
             # Add Docker repository
-            sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+            sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $$'(lsb_release -cs) stable"
 
             # Update package list
             sudo apt-get update
