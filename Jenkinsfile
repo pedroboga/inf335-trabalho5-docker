@@ -1,18 +1,26 @@
 pipeline {
-  agent { label "linux" }
+  agent any
+  
+  tools {
+        dockerTool "docker"
+    }
+  
   stages {
-    stage("build") {
+    stage("Build") {
       steps {
-        sh """ 
-          docker build -t ola-unicamp.app .
-        """
+        script {
+          // Build the Docker image
+          sh "docker build -t ola-unicamp.app ."
+        }
       }
     }
-    stage("run") {
+    
+    stage("Run") {
       steps {
-        sh """
-          docker run -rm ola-unicamp.app .
-        """
+        script {
+          // Run the Docker container
+          sh "docker run --rm ola-unicamp.app"
+        }
       }
     }
   }
